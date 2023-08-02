@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+from PIL import Image
+
+def show_image_with_title(file_path, title):
+    # Load the image using Pillow
+    img = Image.open(file_path)
+    
+    # Display the image using matplotlib
+    plt.imshow(img)
+    plt.axis('off')  # Hide axis
+    
+    # Add the title
+    plt.title(title)
+    
+    plt.show()
+
+# Replace 'xxx.png' and 'yyy.png' with the paths to your image files
+input_file_1 = 'ground_truth.png'
+input_file_2 = 'estimate.png'
+
+# Replace 'Title 1' and 'Title 2' with the desired titles for each image
+title_1 = 'Ground Truth'
+title_2 = 'Estimate'
+
+# Show the first image with title
+show_image_with_title(input_file_1, title_1)
+
+# Show the second image with title
+show_image_with_title(input_file_2, title_2)
