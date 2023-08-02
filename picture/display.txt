@@ -1,6 +1,6 @@
 import cv2
 
-def show_video(file_path):
+def show_video_with_scaling(file_path, scale_factor=0.5):
     # Open the video file
     cap = cv2.VideoCapture(file_path)
 
@@ -17,8 +17,13 @@ def show_video(file_path):
         if not ret:
             break
 
-        # Display the frame
-        cv2.imshow('Video', frame)
+        # Scale down the frame
+        height, width = frame.shape[:2]
+        new_height, new_width = int(height * scale_factor), int(width * scale_factor)
+        scaled_frame = cv2.resize(frame, (new_width, new_height))
+
+        # Display the scaled frame
+        cv2.imshow('Video', scaled_frame)
 
         # Break the loop if 'q' key is pressed
         if cv2.waitKey(1) & 0xFF == ord('q'):
@@ -29,4 +34,8 @@ def show_video(file_path):
     cv2.destroyAllWindows()
 
 input_file = 'demo.mp4'
-show_video(input_file)
+
+# Replace 0.5 with the desired scale factor (0.5 means 50% scaling)
+scale_factor = 0.5
+
+show_video_with_scaling(input_file, scale_factor)
